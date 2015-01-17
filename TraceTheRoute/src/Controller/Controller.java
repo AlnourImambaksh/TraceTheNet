@@ -11,6 +11,9 @@ package Controller;
  */
 
 import View.View;
+import java.awt.event.ActionListener;
+import java.util.Random;
+import javax.swing.JTextField;
 
 public class Controller {
     private final View view;
@@ -22,5 +25,18 @@ public class Controller {
     
     public void start() {
         view.launch();
+    }
+
+    public void BoutonValiderListener(String ipAddress) {
+        System.out.println(ipAddress);
+    }
+
+    public String BoutonGenererListener() {
+        
+        String ipGen = "";
+        Random randomGenerator = new Random();   
+        ipGen = randomGenerator.nextInt(256) + "." + randomGenerator.nextInt(256) + "." + randomGenerator.nextInt(256) + "." + randomGenerator.nextInt(256);
+
+        return ipGen;
     }
 }
