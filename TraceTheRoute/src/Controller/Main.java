@@ -14,6 +14,7 @@ import View.View;
 import Model.Model;
 import fr.ece.fauberte.fakeroute.trace.FakeTraceGenerator;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -53,7 +54,12 @@ public class Main {
         try {
             p = r.exec("tracert ece.fr");
             
-                        FileOutputStream fout = new FileOutputStream("output.txt", true);
+            File file = new File("output.txt");
+            if(file.delete())
+            {
+                
+            }
+            FileOutputStream fout = new FileOutputStream("output.txt", true);
                         
             BufferedReader stdInput = new BufferedReader(new 
             InputStreamReader(p.getInputStream()));
