@@ -1,0 +1,21 @@
+
+D�termination de l'itin�raire vers wikipedia.fr [78.109.84.114]
+avec un maximum de 30 sauts�:
+
+  1    <1 ms     2 ms    <1 ms  FREEBOX [192.168.0.254] 
+  2     9 ms     5 ms     5 ms  88.162.31.254 
+  3     7 ms     5 ms     9 ms  vlq-6k-2-a5.routers.proxad.net [213.228.4.254] 
+  4    11 ms    14 ms     9 ms  bzn-crs16-1-be1024.intf.routers.proxad.net [212.27.56.149] 
+  5     6 ms     6 ms     8 ms  bzn-9k-5-be1000.intf.routers.proxad.net [194.149.161.114] 
+  6     *       18 ms    18 ms  londres-6k-1-po104.intf.routers.proxad.net [194.149.161.238] 
+  7    17 ms    13 ms    15 ms  ten0-1-1-2-t40-mse1.router.uk.clara.net [195.66.224.66] 
+  8    17 ms    13 ms    17 ms  be1-t6-mse1.router.uk.clara.net [195.157.3.17] 
+  9    19 ms   120 ms    17 ms  tengige0-0-0-0-tcl2-mse2.router.uk.clara.net [195.157.3.46] 
+ 10    13 ms    18 ms   125 ms  tengige0-1-1-0-tcl2-mse1.router.uk.clara.net [195.157.3.41] 
+ 11    88 ms    14 ms    13 ms  tengige0-0-0-0-tcl3-mse2.router.uk.clara.net [195.157.3.38] 
+ 12    21 ms    27 ms    22 ms  ten0-0-0-6-sd-br1.router.fr.clara.net [195.8.68.150] 
+ 13    21 ms    21 ms    24 ms  sd-cr1-te-3-4.router.fr.clara.net [62.240.250.122] 
+ 14     *       21 ms     *     6k1.th3-te-8-1.typhon.net [212.43.193.197] 
+ 15    25 ms    21 ms    24 ms  wikimedia2.typhon.net [78.109.84.114] 
+
+Itin�raire d�termin�.

@@ -30,13 +30,14 @@ public class View {
     private final JButton boutonValider;
     private final JButton boutonGenerer;
     private final JButton boutonHelp;
-    
+    private final JLabel wrongIP;
     public View(){
         frame = new JFrame("TraceTheRoute");
         ipField = new JTextField();
         boutonValider = new JButton("Trace");
         boutonGenerer = new JButton("Generate");
         boutonHelp = new JButton("?");
+        wrongIP = new JLabel(" ");
     }
 
     public void launch(){
@@ -53,54 +54,29 @@ public class View {
         boxFields.add(boutonGenerer);
         boxFields.add(boutonHelp);
         
-
-        
-        /*
-        JPanel panel = new JPanel();
-        GridLayout grid = new GridLayout(0,5);
-        grid.setHgap(5);
-        grid.setVgap(5);
-        frame.add(panel, BorderLayout.NORTH);
-        panel.setLayout(grid);  
-
-        panel.add(new JLabel("IP Address : "));
-        panel.add(ipField);
-        panel.add(boutonValider);
-        panel.add(boutonGenerer);
-        panel.add(boutonHelp);
-        panel.add(labelInfo);
-        */
+        Box boxMessage = Box.createHorizontalBox();
+        boxMessage.add(wrongIP);
         
         Box boxDiagram = Box.createHorizontalBox();
-        
         JPanel graphPanel = new JPanel();
         graphPanel.setBorder(new TitledBorder(new EtchedBorder(), "Diagram"));
         JTextArea info = new JTextArea(100,50);
         info.setText("You can enter your IP Address or generate one by clicking the button. Then click on 'Trace' to see the path followed by your packet.");
+        info.append("test");
         info.setEditable(false);
         info.setLineWrap(true);
         info.setWrapStyleWord(true);
         JScrollPane scroll = new JScrollPane(info);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         graphPanel.add(scroll);      
-
         boxDiagram.add(graphPanel);
-        /*
-        JTextArea info = new JTextArea(30, 100);
-        info.setText("You can enter your IP Address or generate one by clicking the button. Then click on 'Trace' to see the path followed by your packet.");
-        info.setEditable(false);
-        info.setLineWrap(true);
-        info.setWrapStyleWord(true);
-        JScrollPane scroll = new JScrollPane(info);
-        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        graphPanel.add(scroll);      
 
-        panel.add(graphPanel, BorderLayout.SOUTH);
-        */
         boutonValider.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e)
             {
-                controller.BoutonValiderListener(ipField.getText());
+                String message = " ";
+                message = controller.BoutonValiderListener(ipField.getText());
+                wrongIP.setText(message);
             }
         });
         boutonGenerer.addActionListener(new ActionListener(){
@@ -108,18 +84,21 @@ public class View {
             {
                 String ipGenerated="";
                 ipGenerated = controller.BoutonGenererListener();
-                 ipField.setText(ipGenerated);
+                ipField.setText(ipGenerated);
+                wrongIP.setText(" ");
             }
         });
         boutonHelp.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e)
             {
+                wrongIP.setText(" ");
                 BoutonHelpListener();
             }
         });
-        
+
         Box boxContainer = Box.createVerticalBox();
         boxContainer.add(boxFields);
+        boxContainer.add(boxMessage);
         boxContainer.add(boxDiagram);
         frame.add(boxContainer, BorderLayout.NORTH);
         frame.setVisible(true);
