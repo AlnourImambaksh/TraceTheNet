@@ -1,0 +1,17 @@
+
+D�termination de l'itin�raire vers ece.fr [91.199.6.42]
+avec un maximum de 30 sauts�:
+
+  1    30 ms    <1 ms    <1 ms  FREEBOX [192.168.0.254] 
+  2     5 ms    12 ms     5 ms  88.162.31.254 
+  3     6 ms     7 ms     6 ms  vlq-6k-2-a5.routers.proxad.net [213.228.4.254] 
+  4     8 ms     6 ms     7 ms  bzn-crs16-1-be1024.intf.routers.proxad.net [212.27.56.149] 
+  5     7 ms    13 ms     7 ms  th2-9k-1-be1003.intf.routers.proxad.net [78.254.249.97] 
+  6     *       11 ms    38 ms  ae56.edge4.Paris1.Level3.net [213.242.111.209] 
+  7     7 ms     9 ms     7 ms  ae-2-70.edge3.Paris1.Level3.net [4.69.168.70] 
+  8     8 ms    12 ms    10 ms  SIPARTECH.edge3.Paris1.Level3.net [212.73.205.82] 
+  9     8 ms     7 ms     7 ms  sip-th2-core1.rtr.sipartech.com [62.129.1.65] 
+ 10     *        *        *     D�lai d'attente de la demande d�pass�.
+ 11     8 ms     9 ms    16 ms  jadzia.ece.fr [91.199.6.42] 
+
+Itin�raire d�termin�.
