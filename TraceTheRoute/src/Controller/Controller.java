@@ -14,6 +14,7 @@ import View.View;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +33,7 @@ public class Controller {
         view.setController(this);
     }
     
-    public void start() {
+    public void start() throws IOException{
         view.launch();
     }
 
@@ -46,11 +47,10 @@ public class Controller {
         else
         {
             try {
-                //Affichage à enlever
-                System.out.println(ipAddress);
+
                 String executeString = "tracert " +ipAddress;
                 p = r.exec(executeString);
-                
+                /*
                 File file = new File("output.txt");
                 if(file.delete())
                 {
@@ -72,7 +72,7 @@ public class Controller {
                 stdInput.close();
                 fout.close();
                 p.destroy();
-               
+               */
             } catch (IOException ex) {
                 Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -88,5 +88,26 @@ public class Controller {
         ipGen = randomGenerator.nextInt(256) + "." + randomGenerator.nextInt(256) + "." + randomGenerator.nextInt(256) + "." + randomGenerator.nextInt(256);
 
         return ipGen;
+    }
+   
+    public String ReadInFile(String line)
+    {
+        String ipRouter = "";
+        for (int i = 0; i<line.length(); i++)
+        {
+            if(line.charAt(i) == '(')
+            {
+                int j=i;
+                while(line.charAt(j)!=')')
+                {
+                    ipRouter+=line.charAt(j);
+                    j++;
+                }
+            ipRouter+=") ";
+            }
+            
+        }
+        System.out.println(ipRouter);
+        return ipRouter;
     }
 }
