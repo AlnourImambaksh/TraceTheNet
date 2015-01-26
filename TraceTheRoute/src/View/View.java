@@ -85,17 +85,15 @@ public class View {
                                 if(array!=null)
                                 {
                                 int taille = array.length;
-                                for(int w= 0; w<TextAreaWidth/2 - taille/2; w++)
+                                System.out.println(array.length);
+                                for(int w= 0; w<TextAreaWidth/3 - taille/3; w++)
                                 {
                                     info.append(" ");
                                 }
                                 info.append(array[i]);
-                                }
-
-                                
+                                }         
                             }
-                            info.append("\n");
-                            
+                            info.append("\n\t\t\t|\n");
 			}
 			br.close(); 
               } catch (FileNotFoundException ex) {
