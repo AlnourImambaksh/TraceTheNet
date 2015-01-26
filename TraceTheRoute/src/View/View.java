@@ -13,11 +13,18 @@ package View;
 import java.awt.*;
 import javax.swing.*;
 import Controller.Controller;
-import Model.Model;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 public class View {
@@ -40,7 +47,7 @@ public class View {
         wrongIP = new JLabel(" ");
     }
 
-    public void launch(){
+    public void launch() throws IOException{
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(WIDTH, HEIGHT);
         frame.setLocationRelativeTo(null);
@@ -60,9 +67,41 @@ public class View {
         Box boxDiagram = Box.createHorizontalBox();
         JPanel graphPanel = new JPanel();
         graphPanel.setBorder(new TitledBorder(new EtchedBorder(), "Diagram"));
-        JTextArea info = new JTextArea(100,50);
-        info.setText("You can enter your IP Address or generate one by clicking the button. Then click on 'Trace' to see the path followed by your packet.");
-        info.append("test");
+        int TextAreaWidth = 100;
+        JTextArea info = new JTextArea(TextAreaWidth,50);
+        String array[] = new String[10];
+
+		String fichier ="output.txt";
+			InputStream ips; 
+        try {
+            ips = new FileInputStream(fichier);
+		InputStreamReader ipsr=new InputStreamReader(ips);
+			BufferedReader br=new BufferedReader(ipsr);
+			String ligne;
+			while ((ligne=br.readLine())!=null){
+                            array =controller.ReadInFile(ligne);
+                            for(int i = 0; i<array.length; i++)
+                            {
+                                if(array!=null)
+                                {
+                                int taille = array.length;
+                                for(int w= 0; w<TextAreaWidth/2 - taille/2; w++)
+                                {
+                                    info.append(" ");
+                                }
+                                info.append(array[i]);
+                                }
+
+                                
+                            }
+                            info.append("\n");
+                            
+			}
+			br.close(); 
+              } catch (FileNotFoundException ex) {
+            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+        }
+	                  
         info.setEditable(false);
         info.setLineWrap(true);
         info.setWrapStyleWord(true);
