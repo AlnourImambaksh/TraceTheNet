@@ -17,11 +17,14 @@ import Controller.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -71,31 +74,31 @@ public class View {
         JTextArea info = new JTextArea(TextAreaWidth,50);
         String array[] = new String[10];
 
-		String fichier ="output.txt";
-			InputStream ips; 
-        try {
+	String fichier ="output.txt";
+	InputStream ips; 
+        try{
+           
             ips = new FileInputStream(fichier);
-		InputStreamReader ipsr=new InputStreamReader(ips);
-			BufferedReader br=new BufferedReader(ipsr);
-			String ligne;
-			while ((ligne=br.readLine())!=null){
-                            array =controller.ReadInFile(ligne);
-                            for(int i = 0; i<array.length; i++)
-                            {
-                                if(array!=null)
-                                {
-                                int taille = array.length;
-                                System.out.println(array.length);
-                                for(int w= 0; w<TextAreaWidth/3 - taille/3; w++)
-                                {
-                                    info.append(" ");
-                                }
-                                info.append(array[i]);
-                                }         
-                            }
-                            info.append("\n\t\t\t|\n");
-			}
-			br.close(); 
+            InputStreamReader ipsr=new InputStreamReader(ips);
+            BufferedReader br=new BufferedReader(ipsr);
+            String ligne;
+            while ((ligne=br.readLine())!=null)
+            {
+                array =controller.ReadInFile(ligne);
+                for(int i = 0; i<array.length; i++)
+                {
+                    if(array[i]!=null)
+                    {
+                        info.append(array[i]);
+                        controller.WriteInFile(array[i]);
+                    }         
+                }
+                info.append("\n");
+                controller.WriteInFile("\n");
+            }
+            br.close(); 
+
+
               } catch (FileNotFoundException ex) {
             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }
