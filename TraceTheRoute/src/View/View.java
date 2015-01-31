@@ -41,6 +41,7 @@ public class View {
     private final JButton boutonGenerer;
     private final JButton boutonHelp;
     private final JLabel wrongIP;
+    private JLabel image;
     public View(){
         frame = new JFrame("TraceTheRoute");
         ipField = new JTextField();
@@ -48,6 +49,7 @@ public class View {
         boutonGenerer = new JButton("Generate");
         boutonHelp = new JButton("?");
         wrongIP = new JLabel(" ");
+
     }
 
     public void launch() throws IOException{
@@ -82,31 +84,45 @@ public class View {
             InputStreamReader ipsr=new InputStreamReader(ips);
             BufferedReader br=new BufferedReader(ipsr);
             String ligne;
+            int counter=0;
+            controller.WriteInFile("digraph graph {\n");
             while ((ligne=br.readLine())!=null)
             {
                 array =controller.ReadInFile(ligne);
+                
                 for(int i = 0; i<array.length; i++)
                 {
                     if(array[i]!=null)
                     {
-                        info.append(array[i]);
+                        //info.append(array[i]);
                         controller.WriteInFile(array[i]);
-                    }         
+
+                        counter++;
+                        if(counter==1)
+                        {
+                            
+                           controller.WriteInFile(";\n"+array[i]+"->");
+                            counter=0;
+                        }
+                    }
                 }
-                info.append("\n");
-                controller.WriteInFile("\n");
+                //controller.WriteInFile("\n");
+            //    info.append("\n");
             }
             br.close(); 
-
+            controller.WriteInFile("}");
 
               } catch (FileNotFoundException ex) {
             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }
-	                  
+	controller.GenererPNG();
+        image = new JLabel(new ImageIcon("graph.pgn"));
+        /*
         info.setEditable(false);
         info.setLineWrap(true);
         info.setWrapStyleWord(true);
-        JScrollPane scroll = new JScrollPane(info);
+        */
+        JScrollPane scroll = new JScrollPane(image);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         graphPanel.add(scroll);      
         boxDiagram.add(graphPanel);
